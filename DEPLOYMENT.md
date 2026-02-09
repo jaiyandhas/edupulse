@@ -37,11 +37,25 @@ The frontend is a React + Vite application.
     -   **Root Directory**: `frontend`
     -   **Build Command**: `npm run build` (Default)
     -   **Output Directory**: `dist` (Default)
-4.  **Environment Variables**:
-    -   **Name**: `VITE_API_URL`
-    -   **Value**: The **Backend URL** from Step 2 (e.g., `https://edupulse-backend.onrender.com`) - *Note: Do not include trailing slash*.
+4.  **Environment Variables** (Go to Settings > Environment Variables):
+    -   `VITE_API_URL`: Your Render Backend URL (e.g., `https://edupulse-backend.onrender.com`)
+    -   `VITE_SUPABASE_URL`: Your Supabase Project URL (e.g., `https://xyz.supabase.co`)
+    -   `VITE_SUPABASE_ANON_KEY`: Your Supabase Anon Key
 5.  **Deploy**: Click "Deploy".
 
+## 4. Supabase Configuration (Authentication)
+To ensure users can log in on the deployed site, you must update Supabase settings.
+
+1.  Go to your **Supabase Dashboard** > **Authentication** > **URL Configuration**.
+2.  **Site URL**: Enter your main Vercel URL.
+    -   Example: `https://edupulse-brown.vercel.app`
+3.  **Redirect URLs**: Add the following:
+    -   `http://localhost:5173/**` (For local development)
+    -   `https://edupulse-brown.vercel.app/**` (For production)
+4.  Click **Save**.
+
 ## Troubleshooting
--   **CORS Errors**: If the frontend cannot talk to the backend, ensure the backend's `main.py` has allowed origins configured (currently set to `["*"]` which is open for development).
+-   **White Screen**: Usually means missing environment variables. Check the Browser Console (F12) for errors like "supabaseUrl is required".
+-   **CORS Errors**: If the frontend cannot talk to the backend, ensure the backend's `main.py` has allowed origins configured (currently set to `["*"]`).
+-   **Login Redirect Loop**: Ensure your Redirect URLs in Supabase match exactly where the app is trying to go.
 -   **Data Loss**: On Render's free tier, the filesystem is ephemeral. Any data saved to local files (like user profiles) will be lost when the service restarts.
