@@ -1,0 +1,79 @@
+[
+    {
+        "episode_id": "ep_1024",
+        "timestamp": "2024-02-07T10:00:00Z",
+        "state": {
+            "user_id": "u_99",
+            "concept_mastery": {
+                "arrays": 0.45,
+                "linked_lists": 0.10
+            },
+            "emotion_vector": [
+                0.1,
+                0.8,
+                0.0
+            ], // [Frustrated, Engaged, Bored]
+            "time_since_last_interaction": 12.5
+        },
+        "action": {
+            "type": "serve_content",
+            "concept": "arrays",
+            "difficulty": 2,
+            "scaffolding_level": "medium"
+        },
+        "reward": 2.5, // Calculated Reward (Learning Gain + Engagement)
+        "next_state": {
+            "user_id": "u_99",
+            "concept_mastery": {
+                "arrays": 0.55,
+                "linked_lists": 0.10
+            },
+            "emotion_vector": [
+                0.0,
+                0.9,
+                0.0
+            ]
+        },
+        "metadata": {
+            "user_response_correct": true,
+            "response_time": 4500
+        }
+    },
+    {
+        "episode_id": "ep_1024",
+        "timestamp": "2024-02-07T10:05:30Z",
+        "state": {
+            "user_id": "u_99",
+            "concept_mastery": {
+                "arrays": 0.85,
+                "linked_lists": 0.10
+            },
+            "emotion_vector": [
+                0.0,
+                0.9,
+                0.1
+            ]
+        },
+        "action": {
+            "type": "recommend_next_topic",
+            "concept": "linked_lists",
+            "reason": "Mastery Threshold > 0.8"
+        },
+        "reward": 5.0,
+        "next_state": {
+            "user_id": "u_99",
+            "concept_mastery": {
+                "arrays": 0.85,
+                "linked_lists": 0.15
+            },
+            "emotion_vector": [
+                0.2,
+                0.8,
+                0.0
+            ] // Slight frustration (new topic)
+        },
+        "metadata": {
+            "user_accepted_recommendation": true
+        }
+    }
+]
