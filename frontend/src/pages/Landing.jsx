@@ -26,15 +26,6 @@ export default function Landing() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        {/* Demo/Academic Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-brand-200 shadow-sm text-brand-700 text-sm font-semibold mb-8 animate-float">
-                            <span className="flex h-2 w-2 relative">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                            </span>
-                            Developed at IIIT-Delhi under Prof. Mukesh Mohania
-                        </div>
-
                         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 max-w-5xl mx-auto leading-tight">
                             AI-Based Live Tutor for <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-brand-600 to-accent-DEFAULT">
