@@ -27,9 +27,9 @@ export default function Landing() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 max-w-5xl mx-auto leading-tight">
-                            AI-Based Live Tutor for <br />
+                            Personalized Education Platform with <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-brand-600 to-accent-DEFAULT">
-                                K-12 Students
+                                Reinforcement Learning
                             </span>
                         </h1>
 
