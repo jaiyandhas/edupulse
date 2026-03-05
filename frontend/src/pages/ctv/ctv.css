@@ -358,6 +358,8 @@
 .ctv-root .app-layout {
   display: flex;
   min-height: 100vh;
+  padding-top: 64px;
+  /* Space for the EduPulse global navbar */
 }
 
 /* --- Sidebar --- */
@@ -367,8 +369,10 @@
   border-right: 1px solid var(--border);
   position: fixed;
   left: 0;
-  top: 0;
-  height: 100vh;
+  top: 64px;
+  /* Start below the EduPulse global navbar */
+  height: calc(100vh - 64px);
+  /* Adjust height to prevent scrolling offscreen */
   display: flex;
   flex-direction: column;
   z-index: 100;
