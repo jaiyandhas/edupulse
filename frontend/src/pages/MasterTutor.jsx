@@ -6,7 +6,7 @@ import { BookOpen, Zap, CheckCircle, Sparkles, ChevronRight, Loader2 } from 'luc
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api' });
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL ? (import.meta.env.VITE_API_URL.endsWith('/api') ? import.meta.env.VITE_API_URL : `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api`) : 'http://localhost:8000/api' });
 
 export default function MasterTutor() {
     const { user } = useAuth();

@@ -8,9 +8,12 @@ import { useAuth } from '../context/AuthContext';
 import { useTelemetry } from '../hooks/useTelemetry';
 
 // Configure Axios
-const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
-});
+const getBaseUrl = () => {
+    const url = import.meta.env.VITE_API_URL;
+    if (!url) return 'http://localhost:8000/api';
+    return url.endsWith('/api') ? url : `${url.replace(/\/$/, '')}/api`;
+};
+const api = axios.create({ baseURL: getBaseUrl() });
 
 export default function AdaptiveQuiz() {
     const { user } = useAuth();

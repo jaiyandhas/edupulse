@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api' });
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL ? (import.meta.env.VITE_API_URL.endsWith('/api') ? import.meta.env.VITE_API_URL : `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api`) : 'http://localhost:8000/api' });
 
 export default function StudentDashboard({ openDiagnostic }) {
     const { user, profile, signOut, updateUserRole } = useAuth();
