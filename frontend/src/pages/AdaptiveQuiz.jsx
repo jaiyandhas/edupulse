@@ -436,41 +436,44 @@ export default function AdaptiveQuiz() {
 
             {/* Intelligence Panel */}
             <div className="lg:col-span-1">
-                <div className="hud-panel rounded-xl overflow-hidden sticky top-24 border border-slate-700/50 shadow-2xl">
-                    <div className="p-4 bg-slate-950/50 border-b border-slate-800 flex items-center justify-between">
+                <div className="hud-panel rounded-2xl overflow-hidden sticky top-24 border border-slate-700/60 shadow-2xl shadow-cyan-900/20">
+                    <div className="p-4 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/60 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <Activity size={16} className="text-cyan-400 animate-pulse" />
-                            <span className="font-mono text-xs font-bold tracking-widest uppercase text-cyan-400">System.Active</span>
+                            <Activity size={18} className="text-cyan-400 animate-pulse drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                            <span className="font-mono text-xs font-bold tracking-widest uppercase text-cyan-400 drop-shadow-[0_0_2px_rgba(34,211,238,0.5)]">System.Active</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-ping"></div>
-                            <span className="text-[10px] text-slate-500 font-mono">LIVE_STREAM</span>
+                        <div className="flex items-center gap-1.5 bg-slate-950/50 px-2 py-1 rounded-full border border-slate-800">
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.8)] animate-pulse"></div>
+                            <span className="text-[10px] text-slate-400 font-mono tracking-wider">LIVE</span>
                         </div>
                     </div>
 
                     <div className="p-5 space-y-8 font-mono text-xs">
                         {/* Status Block */}
-                        <div>
-                            <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-3 border-b border-slate-800 pb-1">Inferred State Vectors</p>
-                            <div className="space-y-3">
+                        <div className="relative">
+                            <div className="absolute -left-5 top-0 w-1 h-full bg-gradient-to-b from-cyan-500/50 to-transparent"></div>
+                            <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+                                <span className="w-2 h-0.5 bg-cyan-500/50"></span> Inferred State Vectors
+                            </p>
+                            <div className="space-y-4">
                                 <div className="flex justify-between items-center group">
-                                    <span className="text-slate-400 group-hover:text-slate-200 transition-colors">MASTERY_SCORE</span>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-16 h-1 bg-slate-800 rounded-full overflow-hidden">
+                                    <span className="text-slate-400 group-hover:text-cyan-300 transition-colors">MASTERY_SCORE</span>
+                                    <div className="flex items-center gap-3 w-1/2 justify-end">
+                                        <div className="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden shadow-inner flex-grow max-w-[80px]">
                                             <div
-                                                className="h-full bg-cyan-500 transition-all duration-500"
+                                                className="h-full bg-gradient-to-r from-cyan-600 to-cyan-400 shadow-[0_0_5px_rgba(34,211,238,0.5)] transition-all duration-700 ease-out"
                                                 style={{ width: `${(rlData ? parseFloat(rlData.state_vector[0]) : 0) * 100}%` }}
                                             ></div>
                                         </div>
-                                        <span className="text-cyan-400 min-w-[3ch] text-right">{rlData ? rlData.state_vector[0] : "0.00"}</span>
+                                        <span className="text-cyan-400 min-w-[3ch] text-right font-bold text-sm tracking-tighter">{rlData ? rlData.state_vector[0] : "0.00"}</span>
                                     </div>
                                 </div>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-slate-400">EMOTION_STATE</span>
-                                    <span className={`px-2 py-0.5 rounded text-[10px] border ${rlData?.state_vector[1] === "Frustrated" ? "border-red-500/30 text-red-400 bg-red-500/10" :
-                                        rlData?.state_vector[1] === "Engaged" ? "border-emerald-500/30 text-emerald-400 bg-emerald-500/10" :
-                                            "border-slate-500/30 text-slate-400"
-                                        }`}>
+                                <div className="flex justify-between items-center group">
+                                    <span className="text-slate-400 group-hover:text-cyan-300 transition-colors">EMOTION_STATE</span>
+                                    <span className={`px-2.5 py-1 rounded border shadow-sm ${rlData?.state_vector[1] === "Frustrated" ? "border-red-500/50 text-red-300 bg-red-500/20 shadow-red-500/20" :
+                                        rlData?.state_vector[1] === "Engaged" ? "border-emerald-500/50 text-emerald-300 bg-emerald-500/20 shadow-emerald-500/20" :
+                                            "border-slate-500/40 text-slate-400 bg-slate-800/50"
+                                        } transition-all duration-300`}>
                                         {rlData ? rlData.state_vector[1].toUpperCase() : "ANALYZING..."}
                                     </span>
                                 </div>
@@ -478,51 +481,62 @@ export default function AdaptiveQuiz() {
                         </div>
 
                         {/* Decision Block */}
-                        <div>
-                            <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-3 border-b border-slate-800 pb-1">Reinforcement Engine</p>
+                        <div className="relative">
+                            <div className="absolute -left-5 top-0 w-1 h-full bg-gradient-to-b from-purple-500/50 to-transparent"></div>
+                            <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+                                <span className="w-2 h-0.5 bg-purple-500/50"></span> Reinforcement Engine
+                            </p>
                             {rlData ? (
                                 <motion.div
                                     initial={{ opacity: 0, x: 10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     key={JSON.stringify(rlData)} // Force re-animate on update
-                                    className="space-y-2"
+                                    className="space-y-3"
                                 >
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">POLICY_ACTION</span>
-                                        <span className="text-yellow-400 font-bold">{rlData.action.replace(" ", "_").toUpperCase()}</span>
+                                    <div className="flex justify-between items-end border-b border-slate-700/50 pb-2">
+                                        <span className="text-slate-500 text-[10px]">POLICY_ACTION</span>
+                                        <span className="text-yellow-400 font-bold bg-yellow-900/30 px-2 py-0.5 rounded border border-yellow-700/50">{rlData.action.replace(" ", "_").toUpperCase()}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">Q_REWARD_VAL</span>
-                                        <span className={`${rlData.reward >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                    <div className="flex justify-between items-end border-b border-slate-700/50 pb-2">
+                                        <span className="text-slate-500 text-[10px]">Q_REWARD_VAL</span>
+                                        <span className={`font-bold text-sm ${rlData.reward >= 0 ? 'text-emerald-400 drop-shadow-[0_0_3px_rgba(52,211,153,0.5)]' : 'text-red-400 drop-shadow-[0_0_3px_rgba(248,113,113,0.5)]'}`}>
                                             {rlData.reward > 0 ? '+' : ''}{rlData.reward.toFixed(2)}
                                         </span>
                                     </div>
 
                                     {/* Dual-Objective Stats */}
-                                    <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-slate-800">
-                                        <div>
-                                            <span className="text-[10px] text-slate-500 block">EFFICIENCY</span>
-                                            <span className="text-emerald-400 font-bold">{rlData.efficiency ? rlData.efficiency.toFixed(1) : '-'}</span>
+                                    <div className="grid grid-cols-2 gap-3 mt-4">
+                                        <div className="bg-slate-800/40 p-2 rounded-lg border border-slate-700/50 flex flex-col items-center justify-center relative overflow-hidden">
+                                            <div className="absolute top-0 left-0 w-full h-0.5 bg-emerald-500/40"></div>
+                                            <span className="text-[9px] text-slate-500 block mb-1 tracking-widest">EFFICIENCY</span>
+                                            <span className="text-emerald-400 font-bold text-sm">{rlData.efficiency ? rlData.efficiency.toFixed(1) : '-'}</span>
                                         </div>
-                                        <div>
-                                            <span className="text-[10px] text-slate-500 block">ENGAGEMENT</span>
-                                            <span className="text-purple-400 font-bold">{rlData.engagement ? rlData.engagement.toFixed(1) : '-'}</span>
+                                        <div className="bg-slate-800/40 p-2 rounded-lg border border-slate-700/50 flex flex-col items-center justify-center relative overflow-hidden">
+                                            <div className="absolute top-0 left-0 w-full h-0.5 bg-purple-500/40"></div>
+                                            <span className="text-[9px] text-slate-500 block mb-1 tracking-widest">ENGAGEMENT</span>
+                                            <span className="text-purple-400 font-bold text-sm">{rlData.engagement ? rlData.engagement.toFixed(1) : '-'}</span>
                                         </div>
                                     </div>
 
                                     {/* System Insight */}
-                                    <div className="mt-3 text-[10px] text-slate-400 bg-slate-900/80 p-2 rounded border border-slate-700/50 leading-relaxed">
-                                        <span className="text-cyan-500 font-bold block mb-1"> SYSTEM_INSIGHT</span>
-                                        {rlData.insight || "Analyzing interaction patterns..."}
+                                    <div className="mt-4 text-[10px] text-slate-300 bg-slate-900/90 p-3 rounded-lg border border-cyan-900/50 shadow-inner relative overflow-hidden">
+                                        <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500"></div>
+                                        <span className="text-cyan-400 font-bold flex items-center gap-1.5 mb-1.5">
+                                            <Activity size={12} /> SYSTEM_INSIGHT
+                                        </span>
+                                        <p className="leading-relaxed opacity-90">{rlData.insight || "Analyzing interaction patterns to optimize learning trajectory..."}</p>
                                     </div>
                                 </motion.div>
                             ) : (
-                                <div className="text-slate-600 italic">Waiting for input...</div>
+                                <div className="text-slate-500 italic bg-slate-800/30 p-4 rounded border border-dashed border-slate-700/50 text-center animate-pulse">
+                                    [ AWAITING_TELEMETRY ]
+                                </div>
                             )}
                         </div>
 
-                        <div className="pt-2 text-[9px] text-slate-600 text-center opacity-50">
-                            EDUPULSE v0.9 // RL_MODEL_ACTIVE
+                        <div className="pt-4 text-[9px] text-slate-600 text-center flex justify-between items-center border-t border-slate-800/80">
+                            <span>EDUPULSE v0.9b</span>
+                            <span className="text-cyan-950 font-bold bg-cyan-500 px-1.5 rounded-sm">RL_ACTIVE</span>
                         </div>
                     </div>
                 </div>

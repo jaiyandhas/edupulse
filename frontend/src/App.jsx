@@ -11,6 +11,14 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 
+// CTV Imports
+import CTVLayout from './pages/ctv/CTVLayout';
+import CTVDashboard from './pages/ctv/CTVDashboard';
+import CTVPractice from './pages/ctv/CTVPractice';
+import CTVBookmarks from './pages/ctv/CTVBookmarks';
+import CTVHistory from './pages/ctv/CTVHistory';
+import CTVAdmin from './pages/ctv/CTVAdmin';
+
 function PrivateRoute({ children }) {
     const { user, loading } = useAuth();
     if (loading) return <div>Loading...</div>;
@@ -36,6 +44,10 @@ function Header() {
                             <Link to="/domains" className="hover:text-indigo-600 transition-colors">Learn</Link>
                             <Link to="/tutor" className="hover:text-cyan-600 transition-colors font-semibold flex items-center gap-1">
                                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> AI Tutor
+                            </Link>
+                            <Link to="/ctv" className="hover:text-amber-500 transition-colors font-semibold flex items-center gap-1 text-amber-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                CTV Arena
                             </Link>
                             <Link to="/dashboard" className="hover:text-indigo-600 transition-colors">Dashboard</Link>
                             <div className="h-4 w-px bg-slate-200"></div>
@@ -101,6 +113,15 @@ function App() {
                                     <AnalyticsDashboard />
                                 </PrivateRoute>
                             } />
+
+                            {/* CTV Routes */}
+                            <Route path="/ctv" element={<PrivateRoute><CTVLayout><CTVDashboard /></CTVLayout></PrivateRoute>} />
+                            <Route path="/ctv/dashboard" element={<PrivateRoute><CTVLayout><CTVDashboard /></CTVLayout></PrivateRoute>} />
+                            <Route path="/ctv/practice" element={<PrivateRoute><CTVLayout><CTVPractice /></CTVLayout></PrivateRoute>} />
+                            <Route path="/ctv/bookmarks" element={<PrivateRoute><CTVLayout><CTVBookmarks /></CTVLayout></PrivateRoute>} />
+                            <Route path="/ctv/history" element={<PrivateRoute><CTVLayout><CTVHistory /></CTVLayout></PrivateRoute>} />
+                            <Route path="/ctv/admin" element={<PrivateRoute><CTVLayout><CTVAdmin /></CTVLayout></PrivateRoute>} />
+
                             {/* Fallback route for demo analytics */}
                             <Route path="/analytics-demo" element={<AnalyticsDashboard demoMode={true} />} />
                         </Routes>

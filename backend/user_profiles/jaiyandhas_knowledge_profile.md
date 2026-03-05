@@ -1,26 +1,26 @@
 # Knowledge Profile: jaiyandhas
-**Generated:** Sat Feb  7 09:26:02 IST 2026
+**Generated:** Fri Feb 27 12:24:08 IST 2026
 
 ## 📊 Executive Summary
 * **Overall Standing:** Needs Foundation
-* **Strongest Areas:** Trees
-* **Critical Gaps:** Arrays, Recursion, Hashing, Sorting, Algebra, Probability, Calculus, Geometry, Stats
+* **Strongest Areas:** None detected yet
+* **Critical Gaps:** Arrays, Recursion, Hashing, Sorting, Trees, Load Balancing, Databases, Caching, CAP Theorem, Microservices
 
 ## 🎯 Course Baselines
-- **DSA:** 20.0% Mastery
-- **MATH:** 0.0% Mastery
+- **DSA:** 0.0% Mastery
+- **SYSTEM_DESIGN:** 0.0% Mastery
 
 ## 📝 Diagnostic Detail
 - **dsa / Arrays:** ❌ Incorrect
 - **dsa / Recursion:** ❌ Incorrect
 - **dsa / Hashing:** ❌ Incorrect
 - **dsa / Sorting:** ❌ Incorrect
-- **dsa / Trees:** ✅ Correct
-- **math / Algebra:** ❌ Incorrect
-- **math / Probability:** ❌ Incorrect
-- **math / Calculus:** ❌ Incorrect
-- **math / Geometry:** ❌ Incorrect
-- **math / Stats:** ❌ Incorrect
+- **dsa / Trees:** ❌ Incorrect
+- **system_design / Load Balancing:** ❌ Incorrect
+- **system_design / Databases:** ❌ Incorrect
+- **system_design / Caching:** ❌ Incorrect
+- **system_design / CAP Theorem:** ❌ Incorrect
+- **system_design / Microservices:** ❌ Incorrect
 
 ## 🚀 Recommended Learning Path
 Based on these results, we recommend starting with:
@@ -28,8 +28,9 @@ Based on these results, we recommend starting with:
 1. [AI Tutor Lesson: Recursion](/tutor?context=Recursion)
 1. [AI Tutor Lesson: Hashing](/tutor?context=Hashing)
 1. [AI Tutor Lesson: Sorting](/tutor?context=Sorting)
-1. [AI Tutor Lesson: Algebra](/tutor?context=Algebra)
-1. [AI Tutor Lesson: Probability](/tutor?context=Probability)
-1. [AI Tutor Lesson: Calculus](/tutor?context=Calculus)
-1. [AI Tutor Lesson: Geometry](/tutor?context=Geometry)
-1. [AI Tutor Lesson: Stats](/tutor?context=Stats)
+1. [AI Tutor Lesson: Trees](/tutor?context=Trees)
+1. [AI Tutor Lesson: Load Balancing](/tutor?context=Load Balancing)
+1. [AI Tutor Lesson: Databases](/tutor?context=Databases)
+1. [AI Tutor Lesson: Caching](/tutor?context=Caching)
+1. [AI Tutor Lesson: CAP Theorem](/tutor?context=CAP Theorem)
+1. [AI Tutor Lesson: Microservices](/tutor?context=Microservices)

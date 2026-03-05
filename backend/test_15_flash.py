@@ -1,4 +1,4 @@
-import google.generativeai as genai
+from google import genai
 import os
 from dotenv import load_dotenv
 
@@ -9,13 +9,14 @@ if not api_key:
     print("No API Key")
     exit(1)
 
-genai.configure(api_key=api_key)
+client = genai.Client(api_key=api_key)
 
-print("Testing gemini-1.5-flash...")
+print("Testing gemini-2.5-flash...")
 try:
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    response = model.generate_content("Hello")
-    print("SUCCESS: gemini-1.5-flash works.")
+    response = client.models.generate_content(
+        model='gemini-2.5-flash', contents='Hello'
+    )
+    print("SUCCESS: gemini-2.5-flash works.")
     print(response.text)
 except Exception as e:
     print(f"FAIL: gemini-1.5-flash failed: {e}")

@@ -1,77 +1,93 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Brain, Zap, BarChart2 } from 'lucide-react';
+import { ArrowRight, Brain, Zap, BarChart2, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const FeatureCard = ({ icon: Icon, title, desc }) => (
-    <div className="bg-white p-6 rounded-xl border border-brand-100 shadow-sm hover:shadow-md transition-shadow">
-        <div className="w-12 h-12 bg-brand-50 rounded-lg flex items-center justify-center text-brand-600 mb-4">
-            <Icon size={24} />
+    <div className="glass-card p-8 rounded-2xl relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-100/50 to-transparent rounded-bl-full -z-10 transition-transform group-hover:scale-110"></div>
+        <div className="w-14 h-14 bg-gradient-to-br from-brand-50 to-brand-100 rounded-xl flex items-center justify-center text-brand-600 mb-6 shadow-inner ring-1 ring-white/50">
+            <Icon size={28} />
         </div>
-        <h3 className="text-lg font-semibold text-brand-900 mb-2">{title}</h3>
-        <p className="text-brand-500 text-sm leading-relaxed">{desc}</p>
+        <h3 className="text-xl font-bold text-brand-900 mb-3">{title}</h3>
+        <p className="text-brand-600 text-sm leading-relaxed font-medium">{desc}</p>
     </div>
 );
 
 export default function Landing() {
     return (
-        <div className="space-y-24 pb-24">
+        <div className="space-y-32 pb-32">
             {/* Hero Section */}
-            <section className="relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-24">
+            <section className="relative overflow-hidden pt-28 pb-20 lg:pt-40 lg:pb-32">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-brand-900 mb-6 max-w-4xl mx-auto">
-                            Adaptive Intelligence for <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent-DEFAULT">
-                                Smarter Learning Paths
+                        {/* Demo/Academic Badge */}
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-brand-200 shadow-sm text-brand-700 text-sm font-semibold mb-8 animate-float">
+                            <span className="flex h-2 w-2 relative">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                            </span>
+                            Developed at IIIT-Delhi under Prof. Mukesh Mohania
+                        </div>
+
+                        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 max-w-5xl mx-auto leading-tight">
+                            AI-Based Live Tutor for <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-brand-600 to-accent-DEFAULT">
+                                K-12 Students
                             </span>
                         </h1>
-                        <p className="text-xl text-brand-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-                            EduPulse creates a personalized curriculum in real-time using reinforcement learning
-                            and behavioral state inference.
+
+                        <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
+                            EduPulse creates a personalized curriculum in real-time, adapting difficulty and detecting student emotions to maintain the perfect learning flow.
                         </p>
 
-                        <div className="flex justify-center gap-4">
-                            <Link to="/domains" className="btn-primary flex items-center gap-2 px-8 py-4 text-base">
-                                Explore Domains <ArrowRight size={18} />
+                        <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+                            <Link to="/domains" className="btn-primary flex items-center justify-center gap-3 text-lg group">
+                                Start Learning <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                             </Link>
-                            <button className="btn-secondary px-8 py-4 text-base">
-                                View Methodology
+                            <button className="btn-secondary flex items-center justify-center gap-2 text-lg">
+                                <Award size={20} className="text-brand-500" />
+                                Project Overview
                             </button>
                         </div>
                     </motion.div>
 
                 </div>
 
-                {/* Abstract Background Decoration */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-                    <div className="absolute top-20 left-10 w-64 h-64 bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-                    <div className="absolute top-20 right-10 w-64 h-64 bg-accent-light rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                {/* Highly Decorative Abstract Background */}
+                <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[60%] bg-gradient-to-br from-indigo-200/40 to-purple-200/40 rounded-full mix-blend-multiply blur-3xl animate-blob"></div>
+                    <div className="absolute top-[20%] right-[-10%] w-[40%] h-[60%] bg-gradient-to-bl from-cyan-200/40 to-blue-200/40 rounded-full mix-blend-multiply blur-3xl animate-blob animation-delay-2000"></div>
+                    <div className="absolute bottom-[-20%] left-[20%] w-[50%] h-[50%] bg-gradient-to-tr from-brand-200/30 to-emerald-200/30 rounded-full mix-blend-multiply blur-3xl animate-blob animation-delay-4000"></div>
                 </div>
             </section>
 
             {/* Features Grid */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid md:grid-cols-3 gap-8">
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold text-slate-900 mb-4">Core Technology</h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-brand-500 to-indigo-500 mx-auto rounded-full"></div>
+                </div>
+                <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
                     <FeatureCard
                         icon={Brain}
-                        title="Deep Tracing"
-                        desc="Our Q-Learning engine maps your knowledge gaps 10x faster than traditional linear quizzes."
+                        title="Adaptive Q-Learning"
+                        desc="Continuously maps knowledge gaps and dynamically adjusts question difficulty using reinforcement learning."
                     />
                     <FeatureCard
                         icon={Zap}
-                        title="Emotion-Aware"
-                        desc="Detects frustration or boredom via behavioral heuristics and adjusts difficulty instantly to maintain flow."
+                        title="Emotion Detection"
+                        desc="Analyzes interaction telemetry (time taken, clicks) to infer frustration or boredom, keeping students in flow."
                     />
                     <FeatureCard
                         icon={BarChart2}
-                        title="Predictive Analytics"
-                        desc="Visualize your learning velocity and mastery retention with research-grade data dashboards."
+                        title="Mastery Tracking"
+                        desc="Provides deep, granular insights into concept-level mastery and learning velocity across multiple subjects."
                     />
                 </div>
             </section>

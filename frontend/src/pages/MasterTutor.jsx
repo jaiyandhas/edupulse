@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BookOpen, Zap, CheckCircle, Sparkles, ChevronRight, Loader2 } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const api = axios.create({ baseURL: 'http://localhost:8000/api' });
 
@@ -146,15 +148,10 @@ export default function MasterTutor() {
                     <div className="grid lg:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         {/* Main Content (Textbook Style) */}
                         <div className="lg:col-span-2 space-y-8">
-                            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 prose prose-indigo max-w-none">
-                                {/* Simple Markdown-ish rendering: handle newlines and bold */}
-                                {lessonContent.split('\n').map((line, i) => {
-                                    if (line.startsWith('##')) return <h2 key={i} className="text-2xl font-bold text-slate-800 mt-6 mb-4">{line.replace(/##/g, '')}</h2>;
-                                    if (line.startsWith('**') && line.endsWith('**')) return <h3 key={i} className="text-lg font-bold text-indigo-900 mt-4 mb-2">{line.replace(/\*\*/g, '')}</h3>;
-                                    if (line.trim().startsWith('-')) return <li key={i} className="ml-4 text-slate-700 mb-1">{line.replace('-', '')}</li>;
-                                    if (line.trim() === '') return <br key={i} />;
-                                    return <p key={i} className="text-slate-700 leading-relaxed mb-4">{line}</p>;
-                                })}
+                            <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200 prose prose-indigo prose-lg max-w-none prose-headings:text-indigo-900 prose-a:text-indigo-600 prose-code:text-indigo-600 prose-code:bg-indigo-50 prose-code:px-1 prose-code:rounded">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                    {lessonContent}
+                                </ReactMarkdown>
                             </div>
                         </div>
 

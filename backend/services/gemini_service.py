@@ -4,11 +4,12 @@ import random
 from typing import Optional
 
 try:
-    import google.generativeai as genai
+    import google.genai as genai
+    from google.genai import types
     HAS_GENAI = True
 except ImportError:
     HAS_GENAI = False
-    print("Warning: google.generativeai not found. Running in Offline Mode.")
+    print("Warning: google.genai not found. Running in Offline Mode.")
 
 try:
     from dotenv import load_dotenv
@@ -20,14 +21,13 @@ class GeminiService:
     def __init__(self):
         # Load API Key from Environment
         self.api_key = os.getenv("GEMINI_API_KEY")
-        self.model = None
-        self.primary_model_name = 'gemini-1.5-flash'
+        self.client = None
+        self.primary_model_name = 'gemini-2.5-flash'
         
         if HAS_GENAI and self.api_key:
-            genai.configure(api_key=self.api_key)
-            self.model = genai.GenerativeModel('gemini-2.5-flash')
+            self.client = genai.Client(api_key=self.api_key)
             
-            print(f"GeminiService: Online and Ready (gemini-2.5-flash).")
+            print(f"GeminiService: Online and Ready ({self.primary_model_name}).")
         else:
              print("GeminiService: API Key missing or Library not found. AI features disabled.")
              
@@ -63,7 +63,7 @@ class GeminiService:
         return None
 
     def get_chat(self, session_id, context=None):
-        if not self.model: return None # Offline
+        if not self.client: return None # Offline
         
         if session_id not in self.chat_sessions:
             # Start new chat with pedagogical system prompt
@@ -73,14 +73,12 @@ class GeminiService:
                 system_instruction += f" The student has explicitly chosen to learn: '{context}'. Start by asking what they know about {context} or giving a brief hook."
             
             # Using history=[] effectively starts a new chat
-            self.chat_sessions[session_id] = self.model.start_chat(history=[])
-            
-            # Seed the system behavior silently
-            try:
-                # We don't need retry strictly for the seeding message, but good practice
-                self.chat_sessions[session_id].send_message(system_instruction)
-            except Exception as e:
-                print(f"Failed to seed chat system instruction: {e}")
+            # In new SDK, client.chats.create()
+            chat = self.client.chats.create(
+                model=self.primary_model_name,
+                config=types.GenerateContentConfig(system_instruction=system_instruction)
+            )
+            self.chat_sessions[session_id] = chat
             
         return self.chat_sessions[session_id]
 
@@ -110,11 +108,14 @@ class GeminiService:
             for model_name in fallback_models:
                 try:
                     print(f"Fallback: Trying {model_name}...")
-                    fallback_model = genai.GenerativeModel(model_name)
-                    # One-shot fallback
+                    # One-shot fallback using client.models.generate_content
                     full_prompt = f"System: You are an AI Tutor. Context: {context or 'General'}. User: {message}"
                     
-                    response = self._generate_with_retry(fallback_model.generate_content, full_prompt)
+                    response = self._generate_with_retry(
+                        self.client.models.generate_content,
+                        model=model_name,
+                        contents=full_prompt
+                    )
                     if response:
                         return response
                 except Exception as fb_e:
@@ -135,9 +136,13 @@ class GeminiService:
         return f"I am currently in offline mode due to high server load (Quota Exceeded). I received your message: '{message}'. Please try again in 24 hours when my energy recharges!"
 
     def generate_content(self, prompt: str):
-        if not self.model: return None
+        if not self.client: return None
         try:
-            return self._generate_with_retry(self.model.generate_content, prompt)
+            return self._generate_with_retry(
+                self.client.models.generate_content,
+                model=self.primary_model_name,
+                contents=prompt
+            )
         except Exception as e:
             print(f"Gemini Gen Error: {e}")
             return "Content generation unavailable (Quota Exceeded)."

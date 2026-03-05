@@ -1,0 +1,1116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap');
+
+/* ============================================================
+   Padichiya — Apple-style Design System
+   Dark, refined, purposeful. Inspired by macOS Sequoia.
+   ============================================================ */
+
+.ctv-root {
+  /* === Background layers === */
+  --bg-base: #0d0d10;
+  /* deepest layer */
+  --bg-elevated: #161619;
+  /* cards, panels */
+  --bg-hover: #1e1e22;
+  /* hover states */
+  --bg-input: #1a1a1e;
+  /* inputs */
+  --bg-sidebar: #111114;
+  /* sidebar */
+  --bg-overlay: rgba(22, 22, 25, 0.85);
+  /* glassmorphism */
+
+  /* === Accent — a calm, confident blue === */
+  --accent: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.12);
+  --accent-border: rgba(59, 130, 246, 0.25);
+
+  /* === Semantic colours === */
+  --success: #34c759;
+  --success-bg: rgba(52, 199, 89, 0.10);
+  --success-border: rgba(52, 199, 89, 0.22);
+  --error: #ff453a;
+  --error-bg: rgba(255, 69, 58, 0.10);
+  --error-border: rgba(255, 69, 58, 0.22);
+  --warning: #ff9f0a;
+  --warning-bg: rgba(255, 159, 10, 0.10);
+  --warning-border: rgba(255, 159, 10, 0.22);
+
+  /* === Typography === */
+  --text-primary: #f5f5f7;
+  --text-secondary: #98989f;
+  --text-tertiary: #58585f;
+
+  /* === Borders === */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* === Radii === */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --r-2xl: 24px;
+
+  /* === Shadows === */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+
+  /* === Layout === */
+  --sidebar-width: 228px;
+}
+
+/* ============================================================
+   Reset
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ctv-root {
+  min-height: 100vh;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+.ctv-root h1,
+.ctv-root h2,
+.ctv-root h3,
+.ctv-root h4,
+.ctv-root h5,
+.ctv-root h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.ctv-root h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.ctv-root h2 {
+  font-size: 1.45rem;
+}
+
+.ctv-root h3 {
+  font-size: 1.15rem;
+}
+
+.ctv-root a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.ctv-root a:hover {
+  opacity: 0.8;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.ctv-root .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 18px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s, transform 0.15s, background 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ctv-root .btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.ctv-root .btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.ctv-root .btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.35);
+}
+
+.ctv-root .btn-primary:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.ctv-root .btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+
+.ctv-root .btn-secondary:hover:not(:disabled) {
+  background: var(--bg-hover);
+}
+
+.ctv-root .btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.ctv-root .btn-ghost:hover:not(:disabled) {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.ctv-root .btn-danger {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 1px solid var(--error-border);
+}
+
+.ctv-root .btn-danger:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.ctv-root .btn-success {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.ctv-root .btn-sm {
+  padding: 6px 13px;
+  font-size: 13px;
+  border-radius: var(--r-sm);
+}
+
+.ctv-root .btn-lg {
+  padding: 13px 26px;
+  font-size: 15px;
+}
+
+.ctv-root .btn-full {
+  width: 100%;
+}
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.ctv-root .card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ctv-root .card-sm {
+  padding: 16px;
+  border-radius: var(--r-lg);
+}
+
+/* subtle selected/focus state for question card */
+.ctv-root .card-glow {
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 1px var(--accent-border), var(--shadow-md);
+}
+
+/* ============================================================
+   Form Controls
+   ============================================================ */
+.ctv-root .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.ctv-root .form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+
+.ctv-root .form-input,
+.ctv-root .form-select,
+.ctv-root .form-textare.ctv-root a {
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  width: 100%;
+}
+
+.ctv-root .form-input:focus,
+.ctv-root .form-select:focus,
+.ctv-root .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.ctv-root .form-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.ctv-root .form-textare.ctv-root a {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ctv-root .form-select {
+  cursor: pointer;
+}
+
+/* ============================================================
+   Badges
+   ============================================================ */
+.ctv-root .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.ctv-root .badge-accent {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+.ctv-root .badge-success {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.ctv-root .badge-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid var(--warning-border);
+}
+
+.ctv-root .badge-error {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 1px solid var(--error-border);
+}
+
+.ctv-root .badge-muted {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border);
+}
+
+/* ============================================================
+   Layout — Sidebar + Main
+   ============================================================ */
+.ctv-root .app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.ctv-root .sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.ctv-root .sidebar-logo {
+  padding: 22px 18px 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ctv-root .sidebar-logo-text {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.ctv-root .sidebar-logo-sub {
+  font-size: 10.5px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.ctv-root .sidebar-nav {
+  padding: 10px 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ctv-root .sidebar-section-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 12px 10px 5px;
+}
+
+.ctv-root .nav-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  font-size: 13.5px;
+  font-weight: 450;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+}
+
+.ctv-root .nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.ctv-root .nav-item.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.ctv-root .nav-item svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+}
+
+.ctv-root .sidebar-bottom {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* --- Main --- */
+.ctv-root .main-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  min-height: 100vh;
+  background: var(--bg-base);
+}
+
+.ctv-root .page-header {
+  padding: 32px 36px 0;
+}
+
+.ctv-root .page-header::after {
+  content: '';
+  display: block;
+  margin-top: 20px;
+  height: 1px;
+  background: var(--border);
+}
+
+.ctv-root .page-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ctv-root .page-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.ctv-root .page-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.ctv-root .page-body {
+  padding: 24px 36px 56px;
+}
+
+/* ============================================================
+   Grid
+   ============================================================ */
+.ctv-root .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.ctv-root .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.ctv-root .grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+/* ============================================================
+   Stat Cards
+   ============================================================ */
+.ctv-root .stat-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.ctv-root .stat-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.ctv-root .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.ctv-root .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.ctv-root .stat-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.ctv-root .stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+/* ============================================================
+   Alert / Feedback
+   ============================================================ */
+.ctv-root .alert {
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-weight: 450;
+}
+
+.ctv-root .alert-success {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.ctv-root .alert-error {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 1px solid var(--error-border);
+}
+
+.ctv-root .alert-info {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+/* ============================================================
+   Divider
+   ============================================================ */
+.ctv-root .divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+/* ============================================================
+   Loading
+   ============================================================ */
+.ctv-root .spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ctv-root .loading-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 12px;
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   Option Buttons (Practice Mode)
+   ============================================================ */
+.ctv-root .option-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 15px 17px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  text-align: left;
+  font-size: 14.5px;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: background 0.12s, border-color 0.12s;
+  width: 100%;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.ctv-root .option-btn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ctv-root .option-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.ctv-root .option-btn.correct {
+  border-color: var(--success);
+  background: var(--success-bg);
+}
+
+.ctv-root .option-btn.wrong {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
+.ctv-root .option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-strong);
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+  letter-spacing: 0;
+}
+
+.ctv-root .option-btn.correct .ctv-root .option-letter {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+
+.ctv-root .option-btn.wrong .ctv-root .option-letter {
+  background: var(--error);
+  border-color: var(--error);
+  color: #fff;
+}
+
+.ctv-root .option-btn.selected .ctv-root .option-letter {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ============================================================
+   Explanation Box
+   ============================================================ */
+.ctv-root .explanation-box {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-md);
+  padding: 16px 18px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-top: 16px;
+  white-space: pre-wrap;
+}
+
+.ctv-root .explanation-box strong {
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   Progress Bar
+   ============================================================ */
+.ctv-root .progress-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.ctv-root .progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   Streak Badge
+   ============================================================ */
+.ctv-root .streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 13px;
+  background: rgba(255, 159, 10, 0.14);
+  border: 1px solid rgba(255, 159, 10, 0.3);
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--warning);
+  transition: background 0.15s;
+  cursor: default;
+}
+
+.ctv-root .streak-badge:hover {
+  background: rgba(255, 159, 10, 0.20);
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+.ctv-root .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 24px;
+  color: var(--text-tertiary);
+  text-align: center;
+  gap: 10px;
+}
+
+.ctv-root .empty-state .ctv-root h3 {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ============================================================
+   Data Table
+   ============================================================ */
+.ctv-root .data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ctv-root .data-table th {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.ctv-root .data-table td {
+  padding: 12px 14px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.ctv-root .data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ctv-root .data-table tr:hover td {
+  background: var(--bg-hover);
+}
+
+/* ============================================================
+   Tabs
+   ============================================================ */
+.ctv-root .tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-elevated);
+  padding: 3px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+}
+
+.ctv-root .tab-btn {
+  flex: 1;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text-secondary);
+  background: transparent;
+  transition: background 0.12s, color 0.12s;
+  letter-spacing: -0.01em;
+}
+
+.ctv-root .tab-btn.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.ctv-root .tab-btn:hover:not(.active) {
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   Subject Practice Card
+   ============================================================ */
+.subject-practice-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition: border-color 0.12s, background 0.12s;
+  flex-wrap: wrap;
+}
+
+.subject-practice-card:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+}
+
+/* ============================================================
+   Question layout
+   ============================================================ */
+.ctv-root .question-number {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+.ctv-root .question-text {
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-weight: 400;
+  margin-bottom: 22px;
+  white-space: pre-wrap;
+  letter-spacing: -0.01em;
+}
+
+.ctv-root .options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.ctv-root .action-bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ============================================================
+   Auth Pages
+   ============================================================ */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg-base);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-2xl);
+  padding: 44px 32px;
+  box-shadow: var(--shadow-lg);
+  animation: appleScaleUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+}
+
+@keyframes appleScaleUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.apple-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  padding: 13px 16px;
+  font-size: 15px;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.apple-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.apple-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.apple-btn {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--r-md);
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: -0.01em;
+  font-family: inherit;
+}
+
+.apple-btn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.apple-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.apple-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.auth-logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-logo-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+}
+
+.auth-logo-sub {
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.auth-title {
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 20px;
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ctv-root .fade-in {
+  animation: fadeIn 0.25s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-6px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.ctv-root .slide-in {
+  animation: slideIn 0.2s ease forwards;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+  .ctv-root .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .ctv-root .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .ctv-root .main-content {
+    margin-left: 0;
+  }
+
+  .ctv-root .page-header {
+    padding: 20px 18px 0;
+  }
+
+  .ctv-root .page-body {
+    padding: 16px 18px 48px;
+  }
+
+  .ctv-root .grid-2,
+  .ctv-root .grid-3,
+  .ctv-root .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .ctv-root h1 {
+    font-size: 1.5rem;
+  }
+}
