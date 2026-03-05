@@ -23,7 +23,7 @@ export default function TeacherDashboard() {
         try {
             // Fetch from our new Python backend endpoint
             // In dev, assuming backend is at :8000
-            const response = await fetch(`http://localhost:8000/api/teacher/${user.id}/analytics`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000/api'}/teacher/${user.id}/analytics`);
             if (response.ok) {
                 const data = await response.json();
                 setAnalytics(data);

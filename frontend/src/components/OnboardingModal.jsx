@@ -4,7 +4,7 @@ import { BookOpen, Code, Calculator, ArrowRight, CheckCircle, Brain, FileText } 
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
-const api = axios.create({ baseURL: 'http://localhost:8000/api' });
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api' });
 
 export default function OnboardingModal({ isOpen, onClose }) {
     const { user } = useAuth();

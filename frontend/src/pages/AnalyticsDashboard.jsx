@@ -4,7 +4,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
 import { CheckCircle, Award, TrendingUp, Home, Sparkles, ArrowRight } from 'lucide-react';
 
-const api = axios.create({ baseURL: 'http://localhost:8000/api' });
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api' });
 
 export default function AnalyticsDashboard({ demoMode = false }) {
     const { sessionId } = useParams();
