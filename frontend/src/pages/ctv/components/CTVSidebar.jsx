@@ -28,17 +28,7 @@ export default function CTVSidebar() {
 
     return (
         <aside className="sidebar">
-            <div className="sidebar-logo">
-                <Link to="/" className="flex items-center gap-2 group mb-1" style={{ textDecoration: 'none' }}>
-                    <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
-                        <Sparkles size={18} />
-                    </div>
-                    <span className="sidebar-logo-text" style={{ fontSize: '20px', marginLeft: '6px' }}>
-                        EduPulse
-                    </span>
-                </Link>
-                <div className="sidebar-logo-sub">CTV PRACTICE ARENA</div>
-            </div>
+
 
             <nav className="sidebar-nav">
                 <div className="sidebar-section-label">Navigation</div>
