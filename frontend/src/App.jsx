@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Domains from './pages/Domains';
 import TopicSelection from './pages/TopicSelection';
@@ -27,8 +27,18 @@ function PrivateRoute({ children }) {
 
 function Header() {
     const { user } = useAuth();
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <header className="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl border-b border-indigo-50 shadow-sm">
+        <header className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-xl border-b border-indigo-50 shadow-sm' : 'bg-gradient-to-b from-white/90 via-white/50 to-transparent border-transparent shadow-none'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-2 group">
                     <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
@@ -71,13 +81,18 @@ function Header() {
     );
 }
 
+function LayoutSpacer() {
+    const location = useLocation();
+    return location.pathname === '/' ? null : <div className="h-16"></div>;
+}
+
 function App() {
     return (
         <AuthProvider>
             <Router>
                 <div className="min-h-screen flex flex-col font-sans text-slate-900 bg-brand-50">
                     <Header />
-                    <div className="h-16"></div> {/* Spacer for fixed header */}
+                    <LayoutSpacer /> {/* Spacer for fixed header */}
 
                     <main className="flex-grow">
                         <Routes>
