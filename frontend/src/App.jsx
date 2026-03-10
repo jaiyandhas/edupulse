@@ -41,8 +41,8 @@ function Header() {
         <header className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-xl border-b border-indigo-50 shadow-sm' : 'bg-gradient-to-b from-white/90 via-white/50 to-transparent border-transparent shadow-none'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-2 group">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
-                        <img src="/edupulse-logo.png" alt="EduPulse Logo" className="w-full h-full object-cover" />
+                    <div className="w-10 h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                        <img src="/edupulse-logo.png" alt="EduPulse Logo" className="w-full h-full object-contain mix-blend-multiply" />
                     </div>
                     <span className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
                         EduPulse
